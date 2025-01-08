@@ -107,8 +107,6 @@ questions = {
     }
 }
 
-score = 0
-
 player = input("What's your name? ")
 
 def show_score(player_name = 'Unknown', points = 0):
@@ -118,7 +116,7 @@ def show_score(player_name = 'Unknown', points = 0):
     elif points < 5 and points >= 3:
         return f'Good job {player_name}! A {points}/5 score is nothing to sneeze at.'
     elif points < 3 and points >= 1:
-        return f'You can do better {player_name}! With a {points}/5 you have a lot of room for improvement.'       
+        return f'You can do better {player_name}! With a {points}/5 score you have a lot of room for improvement.'       
     else:
         return f'Are you okay {player_name}? A {points}/5 score is not so good. Please see a doctor.'
 
@@ -130,19 +128,26 @@ def show_question(number_of_question):
 def check_answer(player_answer, number_of_question):
     """checks if given answer is correct"""
     if player_answer == questions[number_of_question]['answer']:
-        return f'Correct! You get +1 point'
+        print(f'Correct! You get +1 point')
+        return 1
     else:
-        return f"Sorry, you're wrong. The correct answer is {questions[number_of_question]['answer']}"
+        print(f"Sorry, you're wrong. The correct answer is {questions[number_of_question]['answer']}")
+        return 0
 
-
-def main_quiz(name, score = 0):
+def main_quiz(name, score):
     """present questions to the player, check answers, track score"""
     print(f"Your current score is {score}.")
     question_number = int(input(f"{name} pick a number betweeen 1 - 20 to get your next question: "))
     show_question(question_number)
     answer_choice = input(f"Please choose your answer (a, b, c, d): ")
-    print(check_answer(answer_choice, question_number))
+    score = check_answer(answer_choice, question_number)
+    return score
+    
+score = 0   
+n = 0
+while n < 5:
+    score += main_quiz(player, score)
+    n += 1
 
-
-main_quiz(player)
+print(show_score(player, score))
 
