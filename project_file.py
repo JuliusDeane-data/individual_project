@@ -6,6 +6,8 @@
 - player gets score
 """
 
+
+
 questions = {
     1: {
         "question": "What is the standard file extension for Python files?",
@@ -109,10 +111,16 @@ questions = {
     }
 }
 
+
+
+
 player = input("What's your name? ")
 rounds = int(input("How many rounds do you want to play? (1-20) "))
 score = 0 
 questions_picked = []
+
+
+
 
 def show_score(player_name = 'Unknown', points = 0):
     """Shows the final score to the player"""
@@ -125,10 +133,15 @@ def show_score(player_name = 'Unknown', points = 0):
     else:
         return f'Are you okay {player_name}? A {points}/{rounds} score is not so good. Please see a doctor.'
 
+
+
+
 def show_question(number_of_question):
     """returns the question and answer options to the user"""
     print(f'\n\n{questions[number_of_question]["question"]}\n\n{"  ".join(questions[number_of_question]["options"])}')
     
+
+
 
 def check_answer(player_answer, number_of_question):
     """checks if given answer is correct"""
@@ -138,6 +151,9 @@ def check_answer(player_answer, number_of_question):
     else:
         print(f"\nSorry, you're wrong. The correct answer is {questions[number_of_question]['answer']}")
         return 0
+
+
+
 
 def pick_question():
     """Let's player choose a question. If question was chosen before, it makes them choose another question"""
@@ -151,6 +167,9 @@ def pick_question():
     return number
 
 
+
+
+
 def main_quiz(name, score):
     """present questions to the player, check answers, track score"""
     print(f"Your current score is {score}.")
@@ -161,8 +180,10 @@ def main_quiz(name, score):
     score = check_answer(answer_choice, question_number)
     return score
 
-n = 0
 
+
+
+n = 0
 while n < rounds:
     score += main_quiz(player, score)
     n += 1
